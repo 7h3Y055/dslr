@@ -55,7 +55,28 @@ pip install -r requirements.txt
 
 ### Usage
 ```bash
-python describe.py
+python scripts/describe.py
+```
+
+---
+
+## 📈 Part 2: Data Visualization
+
+### Histogram (`Histogram.py`)
+**Question**: *Which Hogwarts course has a homogeneous score distribution between all four houses?*
+
+**Answer**: **Care of Magical Creatures** and **Arithmancy**
+- **Care of Magical Creatures**: Has virtually identical normal distributions across all 4 houses (mean $\approx 0$, std $\approx 1$, fully overlapping bell curves).
+- **Arithmancy**: Also shows almost indistinguishable distributions across all 4 houses (means around $49,000$ to $50,000$, standard deviations around $15,000$ to $19,000$).
+- Because their distributions overlap completely across all houses, both features provide no discriminatory separation power for house classification and should be discarded during feature selection for logistic regression.
+
+#### Usage
+```bash
+python scripts/Data_Visualization/Histogram.py
+```
+Or specify a custom dataset path:
+```bash
+python scripts/Data_Visualization/Histogram.py datasets/dataset_train.csv
 ```
 
 ---
