@@ -8,19 +8,17 @@ def main():
     df = pd.read_csv(dataset_path)
 
     courses = [
-        "Arithmancy", "Astronomy", "Herbology", "Defense Against the Dark Arts",
-        "Divination", "Muggle Studies", "Ancient Runes", "History of Magic",
-        "Transfiguration", "Potions", "Care of Magical Creatures", "Charms", "Flying"
+        "Arithmancy", "Care of Magical Creatures"
     ]
 
     houses = {
         "Gryffindor": "#ae0001",
-        "Hufflepuff": "#ecb939",    
+        "Hufflepuff": "#ecb939",
         "Ravenclaw": "#222f5b",
         "Slytherin": "#2a623d"
     }
 
-    fig, axes = plt.subplots(4, 4, figsize=(18, 12))
+    fig, axes = plt.subplots(1, 2, figsize=(18, 6))
     axes = axes.flatten()
 
     for idx, course in enumerate(courses):
