@@ -79,6 +79,19 @@ Or specify a custom dataset path:
 python scripts/Data_Visualization/Histogram.py datasets/dataset_train.csv
 ```
 
+### Scatter Plot (`Scatter-plot.py`)
+**Question**: *What are the two features that are similar?*
+
+**Answer**: **Astronomy** and **Defense Against the Dark Arts**
+- They show a perfect inverse linear relationship with a Pearson correlation coefficient of $r = -1.0000$.
+- In the scatter plot, every student's score in Astronomy mirrors their Defense Against the Dark Arts score along a straight negative diagonal line.
+- Because one feature can be derived directly from the other, they are collinear; keeping both in a linear classifier would be redundant.
+
+#### Usage
+```bash
+python scripts/Data_Visualization/Scatter-plot.py
+```
+
 ---
 
 ## 📁 Repository Structure

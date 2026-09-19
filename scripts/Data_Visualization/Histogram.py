@@ -1,4 +1,6 @@
+# pyrefly: ignore [missing-import]
 import matplotlib.pyplot as plt
+# pyrefly: ignore [missing-source-for-stubs]
 import pandas as pd
 
 def main():
@@ -13,7 +15,7 @@ def main():
 
     houses = {
         "Gryffindor": "#ae0001",
-        "Hufflepuff": "#ecb939",
+        "Hufflepuff": "#ecb939",    
         "Ravenclaw": "#222f5b",
         "Slytherin": "#2a623d"
     }
