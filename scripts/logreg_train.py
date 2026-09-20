@@ -1,7 +1,9 @@
 from pandas import read_csv, DataFrame
 import numpy as np
-import json
 
+
+EPOCHS = 50000
+LEARNING_RATE = 0.01
 
 features = [
     "Herbology",
@@ -46,16 +48,25 @@ def main():
     weights = DataFrame(0.0, columns=weights_columns, index=houses)
 
 
+    m = len(X)
 
+    for house in houses:
+        y_binary = (y == house).astype(int)
+        theta = np.zeros(X.shape[1])
 
+        for _ in range(EPOCHS):
+            z = X @ theta
+            predictions = sigmoid(z)
+            errors = predictions - y_binary
+            gradient = (1 / m) * (X.T @ errors)
+            theta -= LEARNING_RATE * gradient
 
-
+        weights.loc[house] = list(theta)
 
     weights.loc["Mean"] = [0.0] + list(means)
-    weights.loc["Std"]  = [1.0] + list(stds)
-    weights.index.name = "House"
+    weights.loc["Std"] = [1.0] + list(stds)
     weights.to_csv("dataset_train.csv")
-    
+
 
     print("Model successfully saved to model.json!")
 
