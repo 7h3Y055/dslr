@@ -65,8 +65,7 @@ def main():
 
         for _ in range(EPOCHS):
             predictions = sigmoid(X @ theta)
-            error = predictions - y_binary
-            gradient = (X.T @ error) / m
+            gradient = (X.T @ (predictions - y_binary)) / m
             theta -= LEARNING_RATE * gradient
 
         weights.loc[house] = list(theta)
