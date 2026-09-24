@@ -29,53 +29,44 @@ houses = [
 ]
 
 
-def sigmoid(z):
-    return 1 / (1 + np.e ** -z)
+def sigmoid(theta):
+    return 1 / (1 + (np.e ** (-theta)))
 
 
 def main():
-    # 1. Load data
-    ds = pd.read_csv("../datasets/dataset_train.csv")
-
-    # 2. Extract features
-    data = ds[features]
+    data  = pd.read_csv("../datasets/dataset_train.csv")
     
-    # Calculate means and stds for normalization
-    means = data.mean()
-    stds = data.std()
+    y = data["Hogwarts House"]
+    data = data[features]
 
-    # Fill NaN values with the mean of each feature
-    data = data.fillna(means)
-    
-    # Standardize features  
-    data = (data - means) / stds
+    mean = data.mean()
+    std = data.std()
 
-    # 3. Add bias column of 1s (shape becomes: 1600 x 11)
-    X = np.c_[np.ones(len(data)), data]
-    y = ds["Hogwarts House"]
-    m = len(X)
+    data = data.fillna(mean)
 
-    # 4. Table to store the 11 weights for each house
-    weights = pd.DataFrame(0.0, columns=["Bias"] + features, index=houses)
+    data = (data - mean) / std
 
-    # 5. One-vs-All Training loop
+    X = np.column_stack((np.ones((data.shape[0], 1)), data.to_numpy()))
+    m = X.shape[0]
+
+    w = pd.DataFrame(columns=["Bias"] + features)
+
     for house in houses:
         y_binary = (y == house).astype(int)
-        theta = np.zeros(11)
-
+        theta = np.zeros(X.shape[1], dtype=float)
+        
         for _ in range(EPOCHS):
-            predictions = sigmoid(X @ theta)
-            gradient = (X.T @ (predictions - y_binary)) / m
-            theta -= LEARNING_RATE * gradient
-
-        weights.loc[house] = list(theta)
-
-    # 6. Save weights + normalization data
-    weights.loc["Mean"] = [0.0] + list(means)
-    weights.loc["Std"] = [1.0] + list(stds)
-    weights.to_csv("weights.csv")
+            p = sigmoid(X @ theta)
+            grad = ((p - y_binary) @ X) / m
+            theta = theta - (LEARNING_RATE * grad)
+            
+        w.loc[house] = theta
 
 
+    w.loc["Mean"] = [0] + mean.to_list()
+    w.loc["Std"] = [1] + std.to_list()
+
+    w.to_csv("weights.csv")
     print("Model successfully saved to weights.csv!")
 
 
