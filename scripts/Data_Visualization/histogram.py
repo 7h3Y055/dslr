@@ -1,10 +1,14 @@
+import os
+import sys
 # pyrefly: ignore [missing-import]
 import matplotlib.pyplot as plt
 # pyrefly: ignore [missing-source-for-stubs]
 import pandas as pd
 
 def main():
-    dataset_path = "../../datasets/dataset_train.csv"
+    dataset_path = sys.argv[1] if len(sys.argv) > 1 else "../../datasets/dataset_train.csv"
+    if not os.path.exists(dataset_path) and os.path.exists("datasets/dataset_train.csv"):
+        dataset_path = "datasets/dataset_train.csv"
     df = pd.read_csv(dataset_path)
 
     courses = [

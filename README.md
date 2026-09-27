@@ -67,7 +67,7 @@ python scripts/describe.py
 
 ## 📈 Part 2: Data Visualization
 
-### Histogram (`Histogram.py`)
+### Histogram (`histogram.py`)
 
 **Question**: _Which Hogwarts course has a homogeneous score distribution between all four houses?_
 
@@ -80,16 +80,16 @@ python scripts/describe.py
 #### Usage
 
 ```bash
-python scripts/Data_Visualization/Histogram.py
+python scripts/Data_Visualization/histogram.py
 ```
 
 Or specify a custom dataset path:
 
 ```bash
-python scripts/Data_Visualization/Histogram.py datasets/dataset_train.csv
+python scripts/Data_Visualization/histogram.py datasets/dataset_train.csv
 ```
 
-### Scatter Plot (`Scatter-plot.py`)
+### Scatter Plot (`scatter_plot.py`)
 
 **Question**: _What are the two features that are similar?_
 
@@ -102,12 +102,12 @@ python scripts/Data_Visualization/Histogram.py datasets/dataset_train.csv
 #### Usage
 
 ```bash
-python scripts/Data_Visualization/Scatter-plot.py
+python scripts/Data_Visualization/scatter_plot.py
 ```
 
 ---
 
-### Pair Plot (`Pair-plot.py`)
+### Pair Plot (`pair_plot.py`)
 
 **Question**: _From this pair plot, what features are you going to use for your logistic regression?_
 
@@ -120,7 +120,7 @@ python scripts/Data_Visualization/Scatter-plot.py
 #### Usage
 
 ```bash
-python scripts/Data_Visualization/Pair-plot.py
+python scripts/Data_Visualization/pair_plot.py
 ```
 
 ---
@@ -236,9 +236,9 @@ This trains four One-vs-All classifiers and outputs the optimized weights along 
 │   ├── logreg_train.py            # Logistic regression training script
 │   ├── logreg_predict.py          # Logistic regression prediction script
 │   └── Data_Visualization/
-│       ├── Histogram.py           # Feature distribution analysis
-│       ├── Scatter-plot.py        # Collinearity analysis
-│       └── Pair-plot.py           # Pairwise feature matrix
+│       ├── histogram.py           # Feature distribution analysis
+│       ├── scatter_plot.py        # Collinearity analysis
+│       └── pair_plot.py           # Pairwise feature matrix
 ├── requirements.txt               # Python dependencies
 ├── .gitignore                     # Git ignored files & environments
 └── README.md                      # Project documentation
