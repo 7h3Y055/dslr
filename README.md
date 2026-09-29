@@ -219,9 +219,23 @@ Where $\alpha$ is the learning rate (`LEARNING_RATE = 0.1`).
 ### Training Execution (`logreg_train.py`)
 
 ```bash
-python scripts/logreg_train.py
+python logreg_train.py datasets/dataset_train.csv
+```
+
+Or choose an optimization algorithm:
+```bash
+python logreg_train.py datasets/dataset_train.csv --SGD
 ```
 This trains four One-vs-All classifiers and outputs the optimized weights along with the feature `Mean` and `Std` to `weights.csv`.
+
+---
+
+### Prediction Execution (`logreg_predict.py`)
+
+```bash
+python logreg_predict.py datasets/dataset_test.csv weights.csv
+```
+This generates the final prediction file `houses.csv`.
 
 ---
 
@@ -231,13 +245,12 @@ This trains four One-vs-All classifiers and outputs the optimized weights along 
 ├── datasets/
 │   ├── dataset_train.csv          # Training dataset
 │   └── dataset_test.csv           # Test dataset
-├── scripts/
-│   ├── logreg_train.py            # Logistic regression training script
-│   └── logreg_predict.py          # Logistic regression prediction script
 ├── describe.py                    # Statistical description program
 ├── histogram.py                   # Feature distribution analysis
 ├── scatter_plot.py                # Collinearity analysis
 ├── pair_plot.py                   # Pairwise feature matrix
+├── logreg_train.py                # Logistic regression training script
+├── logreg_predict.py              # Logistic regression prediction script
 ├── requirements.txt               # Python dependencies
 ├── .gitignore                     # Git ignored files & environments
 └── README.md                      # Project documentation

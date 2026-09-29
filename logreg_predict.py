@@ -1,9 +1,8 @@
 import argparse
 import os
 import sys
-import pandas as pd
 import numpy as np
-
+import pandas as pd
 
 # 10 selected courses
 features = [
@@ -27,6 +26,7 @@ houses = [
     "Slytherin"
 ]
 
+
 def parse_arguments():
     parser = argparse.ArgumentParser(
         description="Predict Hogwarts houses using trained logistic regression weights."
@@ -48,8 +48,9 @@ def validate_file(path, label):
         sys.exit(1)
 
 
-def sigmoid(theta):
-    return 1 / (1 + (np.e ** (-theta)))
+def sigmoid(z):
+    return 1.0 / (1.0 + np.exp(-z))
+
 
 def main():
     args = parse_arguments()
@@ -59,7 +60,8 @@ def main():
     validate_file(test_path, "Test dataset")
     validate_file(weights_path, "Weights")
 
-    ds = pd.read_csv(test_path)[features]
+    raw_df = pd.read_csv(test_path)
+    ds = raw_df[features]
     ws = pd.read_csv(weights_path, index_col=0)
 
     mean = ws.loc["Mean", features].astype(float)
@@ -68,22 +70,21 @@ def main():
     ds = ds.fillna(mean)
     ds = (ds - mean) / std
 
-    predictions = []
-    for s in ds.itertuples(): 
-        prob = []
-        x = np.array([1.0] + list(s[1:]), dtype=float)
-        for _, w in ws.iloc[0:4].iterrows():
-            theta = w[["Bias"] + features].to_numpy(dtype=float)
-            z = np.dot(x, theta)
-            prob.append(sigmoid(z))
-        predictions.append(houses[np.argmax(prob)])
+    X = np.column_stack((np.ones((ds.shape[0], 1)), ds.to_numpy()))
+    thetas = ws.loc[houses, ["Bias"] + features].to_numpy(dtype=float)
+
+    # Compute probabilities across all houses
+    probs = sigmoid(X @ thetas.T)
+    pred_indices = np.argmax(probs, axis=1)
+    predictions = [houses[i] for i in pred_indices]
 
     df = pd.DataFrame({
-        "Index": range(len(predictions)),
+        "Index": raw_df["Index"],
         "Hogwarts House": predictions
     })
     df.to_csv("houses.csv", index=False)
-    print("Model successfully saved to houses.csv!")
+    print("Predictions successfully saved to houses.csv!")
+
 
 if __name__ == "__main__":
     main()
