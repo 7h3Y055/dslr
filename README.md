@@ -60,7 +60,7 @@ pip install -r requirements.txt
 ### Usage
 
 ```bash
-python scripts/describe.py
+python describe.py datasets/dataset_train.csv
 ```
 
 ---
@@ -232,13 +232,13 @@ This trains four One-vs-All classifiers and outputs the optimized weights along 
 │   ├── dataset_train.csv          # Training dataset
 │   └── dataset_test.csv           # Test dataset
 ├── scripts/
-│   ├── describe.py                # Statistical description program
 │   ├── logreg_train.py            # Logistic regression training script
 │   ├── logreg_predict.py          # Logistic regression prediction script
 │   └── Data_Visualization/
 │       ├── histogram.py           # Feature distribution analysis
 │       ├── scatter_plot.py        # Collinearity analysis
 │       └── pair_plot.py           # Pairwise feature matrix
+├── describe.py                    # Statistical description program
 ├── requirements.txt               # Python dependencies
 ├── .gitignore                     # Git ignored files & environments
 └── README.md                      # Project documentation
