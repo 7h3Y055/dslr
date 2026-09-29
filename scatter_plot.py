@@ -13,6 +13,9 @@ def main():
     df = pd.read_csv(dataset_path)
 
     f1, f2 = "Astronomy", "Defense Against the Dark Arts"
+    # f1, f2 = "Muggle Studies", "Ancient Runes"
+    # f1, f2 = "History of Magic", "Divination"
+
 
     houses = {
         "Gryffindor": "#ae0001",
