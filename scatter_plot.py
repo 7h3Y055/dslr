@@ -1,20 +1,18 @@
 import os
 import sys
-# pyrefly: ignore [missing-import]
 import matplotlib.pyplot as plt
-# pyrefly: ignore [missing-source-for-stubs]
 import pandas as pd
 
+
 def main():
-    dataset_path = sys.argv[1] if len(sys.argv) > 1 else "../../datasets/dataset_train.csv"
-    if not os.path.exists(dataset_path) and os.path.exists("datasets/dataset_train.csv"):
-        dataset_path = "datasets/dataset_train.csv"
+    dataset_path = sys.argv[1] if len(sys.argv) > 1 else "datasets/dataset_train.csv"
+    if not os.path.exists(dataset_path):
+        print(f"Error: file '{dataset_path}' does not exist.", file=sys.stderr)
+        sys.exit(1)
+
     df = pd.read_csv(dataset_path)
 
     f1, f2 = "Astronomy", "Defense Against the Dark Arts"
-    # f1, f2 = "Muggle Studies", "Ancient Runes"
-    # f1, f2 = "History of Magic", "Divination"
-
 
     houses = {
         "Gryffindor": "#ae0001",
@@ -37,13 +35,14 @@ def main():
             s=25
         )
 
-    plt.title(f"Scatter Plot: {f1} vs {f2}", fontsize=13, fontweight="bold")
+    plt.title(f"Scatter Plot: {f1} vs {f2} (Similar / Collinear Features: r = -1.0)", fontsize=13, fontweight="bold")
     plt.xlabel(f1, fontsize=11)
     plt.ylabel(f2, fontsize=11)
     plt.legend(title="Hogwarts House", loc="upper right")
     plt.grid(True, linestyle="--", alpha=0.3)
     plt.tight_layout()
     plt.show()
+
 
 if __name__ == "__main__":
     main()

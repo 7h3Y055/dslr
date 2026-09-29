@@ -80,13 +80,13 @@ python describe.py datasets/dataset_train.csv
 #### Usage
 
 ```bash
-python scripts/Data_Visualization/histogram.py
+python histogram.py
 ```
 
 Or specify a custom dataset path:
 
 ```bash
-python scripts/Data_Visualization/histogram.py datasets/dataset_train.csv
+python histogram.py datasets/dataset_train.csv
 ```
 
 ### Scatter Plot (`scatter_plot.py`)
@@ -102,7 +102,7 @@ python scripts/Data_Visualization/histogram.py datasets/dataset_train.csv
 #### Usage
 
 ```bash
-python scripts/Data_Visualization/scatter_plot.py
+python scatter_plot.py
 ```
 
 ---
@@ -120,7 +120,7 @@ python scripts/Data_Visualization/scatter_plot.py
 #### Usage
 
 ```bash
-python scripts/Data_Visualization/pair_plot.py
+python pair_plot.py
 ```
 
 ---
@@ -233,12 +233,11 @@ This trains four One-vs-All classifiers and outputs the optimized weights along 
 │   └── dataset_test.csv           # Test dataset
 ├── scripts/
 │   ├── logreg_train.py            # Logistic regression training script
-│   ├── logreg_predict.py          # Logistic regression prediction script
-│   └── Data_Visualization/
-│       ├── histogram.py           # Feature distribution analysis
-│       ├── scatter_plot.py        # Collinearity analysis
-│       └── pair_plot.py           # Pairwise feature matrix
+│   └── logreg_predict.py          # Logistic regression prediction script
 ├── describe.py                    # Statistical description program
+├── histogram.py                   # Feature distribution analysis
+├── scatter_plot.py                # Collinearity analysis
+├── pair_plot.py                   # Pairwise feature matrix
 ├── requirements.txt               # Python dependencies
 ├── .gitignore                     # Git ignored files & environments
 └── README.md                      # Project documentation
